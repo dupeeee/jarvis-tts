@@ -1,18 +1,30 @@
 #!/bin/bash
 set -e
 
-echo "Setting up models directory..."
+echo "=== Setting up models directory ==="
 mkdir -p models
+cd models
 
-# Always remove old files to ensure clean download
-rm -f models/jarvis-medium.onnx models/jarvis-medium.onnx.json
+# Remove old files
+rm -f jarvis-medium.onnx jarvis-medium.onnx.json
 
-echo "Downloading Jarvis voice model..."
-wget -q --show-progress -L https://github.com/rhasspy/piper/releases/download/v1.2.0/jarvis-medium.onnx -O models/jarvis-medium.onnx
-wget -q --show-progress -L https://github.com/rhasspy/piper/releases/download/v1.2.0/jarvis-medium.onnx.json -O models/jarvis-medium.onnx.json
+echo "=== Downloading model files from Hugging Face ==="
+echo "Downloading ONNX model..."
+curl -fL --progress-bar \
+  -o jarvis-medium.onnx \
+  "https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/en_US/jarvis/medium/jarvis-medium.onnx"
 
-echo "Verifying downloads..."
-ls -la models/
+echo "Downloading config JSON..."
+curl -fL --progress-bar \
+  -o jarvis-medium.onnx.json \
+  "https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/en_US/jarvis/medium/jarvis-medium.onnx.json"
 
-echo "Starting application..."
+echo "=== Verifying files ==="
+ls -la
+file jarvis-medium.onnx.json
+head -c 200 jarvis-medium.onnx.json
+
+echo ""
+echo "=== Starting application ==="
+cd ..
 exec python main.py
