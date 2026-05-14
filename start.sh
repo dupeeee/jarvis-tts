@@ -4,8 +4,9 @@ set -e
 echo "Setting up models directory..."
 mkdir -p models
 
-if [ ! -f models/jarvis-medium.onnx ]; then
+if [ ! -f models/jarvis-medium.onnx ] || [ ! -s models/jarvis-medium.onnx.json ]; then
   echo "Downloading Jarvis voice model..."
+  rm -f models/jarvis-medium.onnx models/jarvis-medium.onnx.json
   wget -q -L https://github.com/rhasspy/piper/releases/download/v1.2.0/jarvis-medium.onnx -O models/jarvis-medium.onnx
   wget -q -L https://github.com/rhasspy/piper/releases/download/v1.2.0/jarvis-medium.onnx.json -O models/jarvis-medium.onnx.json
   echo "Model downloaded successfully!"
