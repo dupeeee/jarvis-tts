@@ -6,18 +6,19 @@ mkdir -p models
 cd models
 
 # Remove old files
+rm -f en_US-lessac-medium.onnx en_US-lessac-medium.onnx.json
 rm -f jarvis-medium.onnx jarvis-medium.onnx.json
 
-echo "=== Downloading model files from Hugging Face ==="
+echo "=== Downloading JARVIS model from Hugging Face ==="
 echo "Downloading ONNX model..."
 curl -fL --progress-bar \
   -o jarvis-medium.onnx \
-  "https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/en_US/jarvis/medium/jarvis-medium.onnx"
+  "https://huggingface.co/jgkawell/jarvis/resolve/main/en/en_GB/jarvis/medium/jarvis-medium.onnx"
 
 echo "Downloading config JSON..."
 curl -fL --progress-bar \
   -o jarvis-medium.onnx.json \
-  "https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/en_US/jarvis/medium/jarvis-medium.onnx.json"
+  "https://huggingface.co/jgkawell/jarvis/resolve/main/en/en_GB/jarvis/medium/jarvis-medium.onnx.json"
 
 echo "=== Verifying files ==="
 ls -la
