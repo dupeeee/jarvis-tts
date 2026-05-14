@@ -35,7 +35,7 @@ async def startup_event():
     global model
     logger.info("Loading Piper TTS model...")
     try:
-        model = piper.PiperModel.load(MODEL_PATH, CONFIG_PATH)
+        model = piper.PiperVoice.load(MODEL_PATH)
         logger.info("Model loaded successfully!")
     except Exception as e:
         logger.error(f"Failed to load model: {str(e)}")
@@ -90,7 +90,8 @@ async def text_to_speech(request: TTSRequest):
         with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as f:
             temp_wav = f.name
         
-        model.synthesize(request.text, temp_wav)
+        with open(temp_wav, "wb") as wav_file:
+            model.synthesize_wav(request.text, wav_file)
         
         # Convert to MP3 if requested
         if request.format == "mp3":
