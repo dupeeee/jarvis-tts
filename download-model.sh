@@ -10,10 +10,10 @@ mkdir -p models
 
 # Download model files
 echo "Downloading jarvis-medium.onnx (this may take a while - ~2GB)..."
-curl -L -o models/jarvis-medium.onnx "https://huggingface.co/jgkawell/jarvis/resolve/main/en/jarvis-medium.onnx"
+curl -L -o models/jarvis-medium.onnx "https://huggingface.co/jgkawell/jarvis/resolve/main/en/en_GB/jarvis/medium/jarvis-medium.onnx"
 
 echo "Downloading jarvis-medium.onnx.json..."
-curl -L -o models/jarvis-medium.onnx.json "https://huggingface.co/jgkawell/jarvis/resolve/main/en/jarvis-medium.onnx.json"
+curl -L -o models/jarvis-medium.onnx.json "https://huggingface.co/jgkawell/jarvis/resolve/main/en/en_GB/jarvis/medium/jarvis-medium.onnx.json"
 
 echo "✅ Download complete!"
 echo ""

@@ -16,13 +16,14 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy application code
 COPY main.py .
 
-# Create models and cache directories
-RUN mkdir -p models cache
+# Create models directory
+RUN mkdir -p models
 
 # Download model files during build
 RUN echo "Downloading JARVIS TTS model..." && \
-    curl -L -o models/jarvis-medium.onnx "https://huggingface.co/jgkawell/jarvis/resolve/main/en/jarvis-medium.onnx" && \
-    curl -L -o models/jarvis-medium.onnx.json "https://huggingface.co/jgkawell/jarvis/resolve/main/en/jarvis-medium.onnx.json" && \
+    curl -L -o models/jarvis-medium.onnx "https://huggingface.co/jgkawell/jarvis/resolve/main/en/en_GB/jarvis/medium/jarvis-medium.onnx" && \
+    curl -L -o models/jarvis-medium.onnx.json "https://huggingface.co/jgkawell/jarvis/resolve/main/en/en_GB/jarvis/medium/jarvis-medium.onnx.json" && \
+    ls -la models/ && \
     echo "Model files downloaded successfully"
 
 # Expose port

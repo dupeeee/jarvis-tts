@@ -65,7 +65,7 @@ This will download:
 
 ### Option B: Manual Download
 
-1. Visit: https://huggingface.co/jgkawell/jarvis/tree/main/en
+1. Visit: https://huggingface.co/jgkawell/jarvis/tree/main/en/en_GB/jarvis/medium
 2. Download these files:
    - `jarvis-medium.onnx`
    - `jarvis-medium.onnx.json`

@@ -27,7 +27,7 @@ jarvis-tts/
 
 ## 📥 Step 1: Download the Model Files
 
-1. Go to https://huggingface.co/jgkawell/jarvis/tree/main/en
+1. Go to https://huggingface.co/jgkawell/jarvis/tree/main/en/en_GB/jarvis/medium
 2. Download these files:
    - `jarvis-medium.onnx`
    - `jarvis-medium.onnx.json`
