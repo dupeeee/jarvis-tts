@@ -9,6 +9,7 @@ from pathlib import Path
 import logging
 import hashlib
 import wave
+import shutil
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -107,9 +108,11 @@ async def text_to_speech(request: TTSRequest):
                 os.unlink(temp_wav)
             except ImportError:
                 logger.warning("pydub not available, falling back to WAV")
-                os.rename(temp_wav, cache_file)
+                shutil.copy(temp_wav, cache_file)
+                os.unlink(temp_wav)
         else:
-            os.rename(temp_wav, cache_file)
+            shutil.copy(temp_wav, cache_file)
+            os.unlink(temp_wav)
         
         logger.info(f"Generated: {cache_file.name}")
         return FileResponse(
