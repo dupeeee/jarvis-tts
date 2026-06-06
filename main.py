@@ -8,6 +8,7 @@ import uuid
 from pathlib import Path
 import logging
 import hashlib
+import wave
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -90,8 +91,12 @@ async def text_to_speech(request: TTSRequest):
         with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as f:
             temp_wav = f.name
         
-        with open(temp_wav, "wb") as wav_file:
-            model.synthesize_wav(request.text, wav_file)
+        # Use wave module to write proper WAV file
+        with wave.open(temp_wav, "wb") as wav_file:
+            wav_file.setnchannels(1)
+            wav_file.setsampwidth(2)
+            wav_file.setframerate(22050)
+            model.synthesize(request.text, wav_file)
         
         # Convert to MP3 if requested
         if request.format == "mp3":
